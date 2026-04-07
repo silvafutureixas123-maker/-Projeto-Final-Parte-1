@@ -2,7 +2,7 @@ namespace API.Models;
 
 public class Servico
 {
-    public required string Nome {get; set; }
+    public string? Nome {get; set; }
 
     public decimal Preco {get; set; }
     
