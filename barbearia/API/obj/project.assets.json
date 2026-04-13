@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\vfran\\.nuget\\packages\\": {}
+    "C:\\Users\\PEDRONUNESMOREIRA\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\vfran\\projects-up\\-Projeto-Final-Parte-1\\barbearia\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\PEDRONUNESMOREIRA\\-Projeto-Final-Parte-1\\barbearia\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\vfran\\projects-up\\-Projeto-Final-Parte-1\\barbearia\\API\\API.csproj",
-      "packagesPath": "C:\\Users\\vfran\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\vfran\\projects-up\\-Projeto-Final-Parte-1\\barbearia\\API\\obj\\",
+      "projectPath": "C:\\Users\\PEDRONUNESMOREIRA\\-Projeto-Final-Parte-1\\barbearia\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\PEDRONUNESMOREIRA\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\PEDRONUNESMOREIRA\\-Projeto-Final-Parte-1\\barbearia\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\vfran\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\PEDRONUNESMOREIRA\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -67,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.418/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.419/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
