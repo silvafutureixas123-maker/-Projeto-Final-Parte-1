@@ -1,8 +1,110 @@
-O objetivo deste projeto é proporcionar aos alunos a experiência prática de desenvolver uma aplicação completa, simulando um cenário real de desenvolvimento de software. Para isso, serão utilizadas tecnologias atuais de mercado, aplicando os conceitos estudados em sala de aula.
+# 📅 Sistema de Agendamento de Serviços
 
-A atividade busca estimular o trabalho em equipe, a organização de processos de desenvolvimento, o uso de ferramentas colaborativas e a integração entre back-end e banco de dados. Além disso, visa aproximar o estudante de situações reais da área de tecnologia, nas quais é necessário planejar, implementar e apresentar soluções funcionais dentro de prazos definidos.
+## 👥 Integrantes
 
-Integrantes do grupo:
-Marcelo da Silva 
-Vinícius França
-Pedro Nunes Moreira
+* Marcelo da Silva 
+* Vinícius França
+* Pedro Nunes Moreira
+
+**Turma:** Tópicos Especiais em Sistemas - Segunda - 2026.01
+
+---
+
+## 📌 Resumo
+
+Este projeto consiste no desenvolvimento de um sistema de agendamento de serviços, permitindo o cadastro de clientes, serviços disponíveis e o gerenciamento de agendamentos. A aplicação possibilita que usuários registrem e consultem horários marcados, organizando de forma eficiente a prestação de serviços. O sistema implementa operações de CRUD (Create, Read, Update, Delete), garantindo a manipulação completa dos dados. O projeto foi estruturado com foco em simplicidade, organização e aplicação prática dos conceitos estudados em sala de aula.
+
+---
+
+## ⚙️ Funcionalidades
+
+* Cadastro, edição, listagem e remoção de clientes
+* Cadastro e gerenciamento de serviços oferecidos
+* Criação de agendamentos vinculando clientes e serviços
+* Listagem de agendamentos com informações completas
+* Disponibilização de endpoints REST para acesso às funcionalidades
+
+---
+
+## 🧩 Descrição das Funcionalidades
+
+### 👤 Gestão de Clientes
+
+O sistema permite o cadastro completo de clientes, incluindo informações básicas. Também é possível editar, excluir e listar os clientes cadastrados, garantindo um controle eficiente dos usuários que utilizam os serviços.
+
+**Endpoints:**
+
+```
+GET /api/clientes
+POST /api/clientes
+PUT /api/clientes/{id}
+DELETE /api/clientes/{id}
+```
+
+---
+
+### 🛠️ Gestão de Serviços
+
+Os serviços oferecidos podem ser cadastrados com descrição e valor, permitindo sua organização dentro do sistema. Essa funcionalidade possibilita manter um catálogo atualizado dos serviços disponíveis para agendamento.
+
+**Endpoints:**
+
+```
+GET /api/servicos
+POST /api/servicos
+PUT /api/servicos/{id}
+DELETE /api/servicos/{id}
+```
+
+---
+
+### 📅 Gestão de Agendamentos
+
+Os agendamentos são o núcleo do sistema, permitindo vincular um cliente a um serviço em uma data e horário específicos. Essa funcionalidade utiliza o relacionamento entre entidades no banco de dados, garantindo integridade e organização das informações.
+
+O sistema permite:
+
+* Criar novos agendamentos
+* Listar todos os agendamentos
+* Atualizar informações de um agendamento
+* Cancelar agendamentos
+
+**Endpoints:**
+
+```
+GET /api/agendamentos
+POST /api/agendamentos
+PUT /api/agendamentos/{id}
+DELETE /api/agendamentos/{id}
+```
+
+---
+
+### 🔗 Relacionamento entre Entidades
+
+O sistema implementa relacionamento entre as entidades:
+
+* Um agendamento está associado a um cliente
+* Um agendamento está associado a um serviço
+
+Isso garante que não seja possível criar agendamentos sem dados previamente cadastrados, respeitando a lógica do sistema.
+
+---
+
+## 🤖 Uso de IA
+
+**Ferramenta utilizada:**
+
+* ChatGPT (OpenAI)
+
+**Forma de uso:**
+
+* Geração da estrutura do README
+* Criação dos textos de resumo, funcionalidades e descrições
+* Sugestões de organização da documentação
+
+**Revisões realizadas pela equipe:**
+
+* Ajustes nos nomes das entidades e endpoints
+* Adaptação da linguagem para o contexto do projeto
+* Conferência das funcionalidades implementadas no sistema
