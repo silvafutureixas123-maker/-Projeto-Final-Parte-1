@@ -4,7 +4,9 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
 var servicos = new List<Servico>();
+var agendamentos = new List<Agendamento>();
 
+// Serviço
 app.MapGet("/api/servicos", () =>
 {
     return Results.Ok(servicos);
@@ -60,6 +62,31 @@ app.MapDelete("/api/servicos/{id}", (string id) =>
     servicos.Remove(servico);
 
     return Results.NoContent();
+});
+
+// Agendamento
+app.MapGet("/api/agendamentos", () =>
+{
+    return Results.Ok(servicos);
+});
+
+app.MapGet("/api/agendamentos/{id}", (string id) =>
+{
+    var servico = agendamentos.FirstOrDefault(s => s.Id == id);
+
+    if (servico == null)
+    {
+        return Results.NotFound("Agendamento não encontrado!");
+    }
+
+    return Results.Ok(servico);
+});
+
+app.MapPost("/api/agendamentos", (Agendamento agendamento) =>
+{
+    agendamentos.Add(agendamento);
+
+    return Results.Created("", agendamento);
 });
 
 app.Run();
