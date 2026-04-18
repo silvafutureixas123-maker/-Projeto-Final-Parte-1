@@ -6,7 +6,8 @@
 * Vinícius França
 * Pedro Nunes Moreira
 
-**Turma:** Tópicos Especiais em Sistemas - Segunda - 2026.01
+**Curso:** Análise e Desenvolvimento de Sistemas
+**Turma:** Tópicos Especiais em Sistemas - Segunda - 2026.01 - noite
 
 ---
 
@@ -32,13 +33,31 @@ Este projeto consiste no desenvolvimento de um sistema de agendamento de serviç
 
 O sistema permite o cadastro completo de clientes, incluindo informações básicas. Também é possível editar, excluir e listar os clientes cadastrados, garantindo um controle eficiente dos usuários que utilizam os serviços.
 
-**Endpoints:**
+**Endpoints e atributos:**
 
-```
+```json
 GET /api/clientes
+→ Não requer corpo
+
+GET /api/clientes/{id}
+→ Não requer corpo
+
 POST /api/clientes
+{
+  "nome": "string",
+  "email": "string",
+  "telefone": "string"
+}
+
 PUT /api/clientes/{id}
+{
+  "nome": "string",
+  "email": "string",
+  "telefone": "string"
+}
+
 DELETE /api/clientes/{id}
+→ Não requer corpo
 ```
 
 ---
@@ -47,13 +66,31 @@ DELETE /api/clientes/{id}
 
 Os serviços oferecidos podem ser cadastrados com descrição e valor, permitindo sua organização dentro do sistema. Essa funcionalidade possibilita manter um catálogo atualizado dos serviços disponíveis para agendamento.
 
-**Endpoints:**
+**Endpoints e atributos:**
 
-```
+```json
 GET /api/servicos
+→ Não requer corpo
+
+GET /api/servicos/{id}
+→ Não requer corpo
+
 POST /api/servicos
+{
+  "nome": "string",
+  "descricao": "string",
+  "valor": 0.0
+}
+
 PUT /api/servicos/{id}
+{
+  "nome": "string",
+  "descricao": "string",
+  "valor": 0.0
+}
+
 DELETE /api/servicos/{id}
+→ Não requer corpo
 ```
 
 ---
@@ -69,13 +106,32 @@ O sistema permite:
 * Atualizar informações de um agendamento
 * Cancelar agendamentos
 
-**Endpoints:**
+**Endpoints e atributos:**
 
-```
+```json
 GET /api/agendamentos
+→ Não requer corpo
+
+GET /api/agendamentos/{id}
+→ Não requer corpo
+
 POST /api/agendamentos
+{
+  "dataHora": "2026-01-01T10:00:00",
+  "IdServico": "string (GUID)",
+  "IdCliente": "string (GUID)",
+  "DataCadastro": "Agendado",
+  "Situacao": "string"
+}
+
 PUT /api/agendamentos/{id}
+{
+  "dataHora": "datetime",
+  "Situacao": "string"
+}
+
 DELETE /api/agendamentos/{id}
+→ Não requer corpo
 ```
 
 ---
