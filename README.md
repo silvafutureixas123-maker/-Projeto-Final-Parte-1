@@ -6,7 +6,7 @@
 * Vinícius França
 * Pedro Nunes Moreira
 
-**Curso:** Análise e Desenvolvimento de Sistemas
+**Curso:** Análise e Desenvolvimento de Sistemas  
 **Turma:** Tópicos Especiais em Sistemas - Segunda - 2026.01 - noite
 
 ---
