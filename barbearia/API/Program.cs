@@ -5,6 +5,7 @@ var app = builder.Build();
 
 var servicos = new List<Servico>();
 var agendamentos = new List<Agendamento>();
+var clientes = new List<Cliente>();
 
 // Serviço
 app.MapGet("/api/servicos", () =>
@@ -60,6 +61,66 @@ app.MapDelete("/api/servicos/{id}", (string id) =>
         return Results.NotFound("Serviço não encontrado!");
     }
     servicos.Remove(servico);
+
+    return Results.NoContent();
+});
+
+// Cliente
+app.MapGet("/api/clientes", () =>
+{
+    return Results.Ok(clientes);
+});
+
+app.MapGet("/api/clientes/{id}", (string id) =>
+{
+    var cliente = clientes.FirstOrDefault(c => c.Id == id);
+
+    if (cliente == null)
+    {
+        return Results.NotFound("Cliente não encontrado!");
+    }
+
+    return Results.Ok(cliente);
+});
+
+app.MapPost("/api/clientes", (Cliente cliente) =>
+{
+    if (clientes.Any(c => c.Email == cliente.Email))
+    {
+        return Results.Conflict("Cliente já cadastrado!");
+    }
+
+    clientes.Add(cliente);
+
+    return Results.Created($"/api/clientes/{cliente.Id}", cliente);
+});
+
+app.MapPut("/api/clientes/{id}", (string id, Cliente clienteAtualizado) =>
+{
+    var cliente = clientes.FirstOrDefault(c => c.Id == id);
+
+    if (cliente == null)
+    {
+        return Results.NotFound("Cliente não encontrado!");
+    }
+
+    cliente.Nome = clienteAtualizado.Nome;
+    cliente.Email = clienteAtualizado.Email;
+    cliente.Telefone = clienteAtualizado.Telefone;
+
+    return Results.Ok(cliente);
+});
+
+app.MapDelete("/api/clientes/{id}", (string id) =>
+{
+    var cliente = clientes.FirstOrDefault(c => c.Id == id);
+
+    if (cliente == null)
+    {
+        return Results.NotFound("Cliente não encontrado!");
+    }
+
+    clientes.Remove(cliente);
 
     return Results.NoContent();
 });
