@@ -1,6 +1,6 @@
 namespace API.Models;
 
-public class Clientes
+public class Cliente
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
     public string? Nome { get; set; }
