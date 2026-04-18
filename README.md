@@ -78,15 +78,15 @@ GET /api/servicos/{id}
 POST /api/servicos
 {
   "nome": "string",
-  "descricao": "string",
-  "valor": 0.0
+  "preco": 0.0,
+  "duracao": 0
 }
 
 PUT /api/servicos/{id}
 {
   "nome": "string",
-  "descricao": "string",
-  "valor": 0.0
+  "preco": 0.0,
+  "duracao": 0
 }
 
 DELETE /api/servicos/{id}
