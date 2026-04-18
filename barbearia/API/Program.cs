@@ -89,4 +89,18 @@ app.MapPost("/api/agendamentos", (Agendamento agendamento) =>
     return Results.Created("", agendamento);
 });
 
+app.MapPut("/api/agendamentos/{id}", (string id, Agendamento agendamentoAtualizado) =>
+{
+    var agendamento = agendamentos.FirstOrDefault(s => s.Id == id);
+
+    if (agendamento == null)
+    {
+        return Results.NotFound("Agendamento não encontrado!");
+    }
+
+    agendamento.Situacao  = agendamentoAtualizado.Situacao ;
+
+    return Results.Ok(agendamento);
+});
+
 app.Run();
