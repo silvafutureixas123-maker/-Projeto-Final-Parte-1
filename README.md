@@ -117,16 +117,15 @@ GET /api/agendamentos/{id}
 
 POST /api/agendamentos
 {
-  "dataHora": "2026-01-01T10:00:00",
   "IdServico": "string (GUID)",
   "IdCliente": "string (GUID)",
-  "DataCadastro": "Agendado",
+  "DataCadastro": "2026-01-01T10:00:00",
   "Situacao": "string"
 }
 
 PUT /api/agendamentos/{id}
 {
-  "dataHora": "datetime",
+  "DataCadastro": "datetime",
   "Situacao": "string"
 }
 
