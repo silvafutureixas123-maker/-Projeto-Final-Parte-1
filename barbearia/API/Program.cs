@@ -67,19 +67,19 @@ app.MapDelete("/api/servicos/{id}", (string id) =>
 // Agendamento
 app.MapGet("/api/agendamentos", () =>
 {
-    return Results.Ok(servicos);
+    return Results.Ok(agendamentos);
 });
 
 app.MapGet("/api/agendamentos/{id}", (string id) =>
 {
-    var servico = agendamentos.FirstOrDefault(s => s.Id == id);
+    var agendamento = agendamentos.FirstOrDefault(s => s.Id == id);
 
-    if (servico == null)
+    if (agendamento == null)
     {
         return Results.NotFound("Agendamento não encontrado!");
     }
 
-    return Results.Ok(servico);
+    return Results.Ok(agendamento);
 });
 
 app.MapPost("/api/agendamentos", (Agendamento agendamento) =>
