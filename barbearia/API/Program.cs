@@ -159,7 +159,8 @@ app.MapPut("/api/agendamentos/{id}", (string id, Agendamento agendamentoAtualiza
         return Results.NotFound("Agendamento não encontrado!");
     }
 
-    agendamento.Situacao  = agendamentoAtualizado.Situacao ;
+    agendamento.Situacao = agendamentoAtualizado.Situacao;
+    agendamento.DataCadastro = agendamentoAtualizado.DataCadastro;
 
     return Results.Ok(agendamento);
 });
