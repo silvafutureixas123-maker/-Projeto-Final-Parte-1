@@ -64,7 +64,7 @@ DELETE /api/clientes/{id}
 
 ### 🛠️ Gestão de Serviços
 
-Os serviços oferecidos podem ser cadastrados com descrição e valor, permitindo sua organização dentro do sistema. Essa funcionalidade possibilita manter um catálogo atualizado dos serviços disponíveis para agendamento.
+Os serviços oferecidos podem ser cadastrados com nome, preço e duração, permitindo sua organização dentro do sistema. Essa funcionalidade possibilita manter um catálogo atualizado dos serviços disponíveis para agendamento.
 
 **Endpoints e atributos:**
 
@@ -97,7 +97,7 @@ DELETE /api/servicos/{id}
 
 ### 📅 Gestão de Agendamentos
 
-Os agendamentos são o núcleo do sistema, permitindo vincular um cliente a um serviço em uma data e horário específicos. Essa funcionalidade utiliza o relacionamento entre entidades no banco de dados, garantindo integridade e organização das informações.
+Os agendamentos são o núcleo do sistema, permitindo vincular um cliente a um serviço em uma data e horário específicos. Essa funcionalidade utiliza o relacionamento entre entidades, garantindo integridade e organização das informações.
 
 O sistema permite:
 
@@ -129,8 +129,6 @@ PUT /api/agendamentos/{id}
   "Situacao": "string"
 }
 
-DELETE /api/agendamentos/{id}
-→ Não requer corpo
 ```
 
 ---
