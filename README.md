@@ -45,119 +45,120 @@ GET /api/clientes/{id}
 POST /api/clientes
 {
   "nome": "string",
-  "email": "string",
-  "telefone": "string"
-}
+    "email": "string",
+      "telefone": "string"
+      }
 
-PUT /api/clientes/{id}
-{
-  "nome": "string",
-  "email": "string",
-  "telefone": "string"
-}
+      PUT /api/clientes/{id}
+      {
+        "nome": "string",
+          "email": "string",
+            "telefone": "string"
+            }
 
-DELETE /api/clientes/{id}
-→ Não requer corpo
-```
+            DELETE /api/clientes/{id}
+            → Não requer corpo
+            ```
 
----
+            ---
 
-### 🛠️ Gestão de Serviços
+            ### 🛠️ Gestão de Serviços
 
-Os serviços oferecidos podem ser cadastrados com nome, preço e duração, permitindo sua organização dentro do sistema. Essa funcionalidade possibilita manter um catálogo atualizado dos serviços disponíveis para agendamento.
+            Os serviços oferecidos podem ser cadastrados com nome, preço e duração, permitindo sua organização dentro do sistema. Essa funcionalidade possibilita manter um catálogo atualizado dos serviços disponíveis para agendamento.
 
-**Endpoints e atributos:**
+            **Endpoints e atributos:**
 
-```json
-GET /api/servicos
-→ Não requer corpo
+            ```json
+            GET /api/servicos
+            → Não requer corpo
 
-GET /api/servicos/{id}
-→ Não requer corpo
+            GET /api/servicos/{id}
+            → Não requer corpo
 
-POST /api/servicos
-{
-  "nome": "string",
-  "preco": 0.0,
-  "duracao": 0
-}
+            POST /api/servicos
+            {
+              "nome": "string",
+                "preco": 0.0,
+                  "duracao": 0
+                  }
 
-PUT /api/servicos/{id}
-{
-  "nome": "string",
-  "preco": 0.0,
-  "duracao": 0
-}
+                  PUT /api/servicos/{id}
+                  {
+                    "nome": "string",
+                      "preco": 0.0,
+                        "duracao": 0
+                        }
 
-DELETE /api/servicos/{id}
-→ Não requer corpo
-```
+                        DELETE /api/servicos/{id}
+                        → Não requer corpo
+                        ```
 
----
+                        ---
 
-### 📅 Gestão de Agendamentos
+                        ### 📅 Gestão de Agendamentos
 
-Os agendamentos são o núcleo do sistema, permitindo vincular um cliente a um serviço em uma data e horário específicos. Essa funcionalidade utiliza o relacionamento entre entidades, garantindo integridade e organização das informações.
+                        Os agendamentos são o núcleo do sistema, permitindo vincular um cliente a um serviço em uma data e horário específicos. Essa funcionalidade utiliza o relacionamento entre entidades, garantindo integridade e organização das informações.
 
-O sistema permite:
+                        O sistema permite:
 
-* Criar novos agendamentos
-* Listar todos os agendamentos
-* Atualizar informações de um agendamento
-* Cancelar agendamentos
+                        * Criar novos agendamentos
+                        * Listar todos os agendamentos
+                        * Atualizar informações de um agendamento
+                        * Cancelar agendamentos
 
-**Endpoints e atributos:**
+                        **Endpoints e atributos:**
 
-```json
-GET /api/agendamentos
-→ Não requer corpo
+                        ```json
+                        GET /api/agendamentos
+                        → Não requer corpo
 
-GET /api/agendamentos/{id}
-→ Não requer corpo
+                        GET /api/agendamentos/{id}
+                        → Não requer corpo
 
-POST /api/agendamentos
-{
-  "IdServico": "string (GUID)",
-  "IdCliente": "string (GUID)",
-  "DataCadastro": "2026-01-01T10:00:00",
-  "Situacao": "string"
-}
+                        POST /api/agendamentos
+                        {
+                          "IdServico": "string (GUID)",
+                            "IdCliente": "string (GUID)",
+                              "DataCadastro": "2026-01-01T10:00:00",
+                                "Situacao": "string"
+                                }
 
-PUT /api/agendamentos/{id}
-{
-  "DataCadastro": "datetime",
-  "Situacao": "string"
-}
+                                PUT /api/agendamentos/{id}
+                                {
+                                  "DataCadastro": "datetime",
+                                    "Situacao": "string"
+                                    }
 
-```
+                                    ```
 
----
+                                    ---
 
-### 🔗 Relacionamento entre Entidades
+                                    ### 🔗 Relacionamento entre Entidades
 
-O sistema implementa relacionamento entre as entidades:
+                                    O sistema implementa relacionamento entre as entidades:
 
-* Um agendamento está associado a um cliente
-* Um agendamento está associado a um serviço
+                                    * Um agendamento está associado a um cliente
+                                    * Um agendamento está associado a um serviço
 
-Isso garante que não seja possível criar agendamentos sem dados previamente cadastrados, respeitando a lógica do sistema.
+                                    Isso garante que não seja possível criar agendamentos sem dados previamente cadastrados, respeitando a lógica do sistema.
 
----
+                                    ---
 
-## 🤖 Uso de IA
+                                    ## 🤖 Uso de IA
 
-**Ferramenta utilizada:**
+                                    **Ferramenta utilizada:**
 
-* ChatGPT (OpenAI)
+                                    * ChatGPT (OpenAI)
 
-**Forma de uso:**
+                                    **Forma de uso:**
 
-* Geração da estrutura do README
-* Criação dos textos de resumo, funcionalidades e descrições
-* Sugestões de organização da documentação
+                                    * Geração da estrutura do README
+                                    * Criação dos textos de resumo, funcionalidades e descrições
+                                    * Sugestões de organização da documentação
 
-**Revisões realizadas pela equipe:**
+                                    **Revisões realizadas pela equipe:**
 
-* Ajustes nos nomes das entidades e endpoints
-* Adaptação da linguagem para o contexto do projeto
-* Conferência das funcionalidades implementadas no sistema
+                                    * Ajustes nos nomes das entidades e endpoints
+                                    * Adaptação da linguagem para o contexto do projeto
+                                    * Conferência das funcionalidades implementadas no sistema
+                                    
