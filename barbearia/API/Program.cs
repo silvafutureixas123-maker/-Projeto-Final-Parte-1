@@ -1,6 +1,11 @@
+using API.Data;
 using API.Models;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDataContext>();
+
 var app = builder.Build();
 
 var servicos = new List<Servico>();
@@ -8,9 +13,9 @@ var agendamentos = new List<Agendamento>();
 var clientes = new List<Cliente>();
 
 // Serviço
-app.MapGet("/api/servicos", () =>
+app.MapGet("/api/servicos", ([FromServices] AppDataContext ctx) =>
 {
-    return Results.Ok(servicos);
+    return Results.Ok(ctx.Servicos.ToList());
 });
 
 app.MapGet("/api/servicos/{id}", (string id) =>
@@ -25,13 +30,10 @@ app.MapGet("/api/servicos/{id}", (string id) =>
     return Results.Ok(servico);
 });
 
-app.MapPost("/api/servicos", (Servico servico) =>
+app.MapPost("/api/servicos", ([FromBody] Servico servico, [FromServices] AppDataContext ctx) =>
 {
-    if (servicos.Any(s => s.Nome == servico.Nome))
-    {
-        return Results.Conflict("Esse serviço já existe!");
-    }
-    servicos.Add(servico);
+    ctx.Servicos.Add(servico);
+    ctx.SaveChanges();
 
     return Results.Created("", servico);
 });
