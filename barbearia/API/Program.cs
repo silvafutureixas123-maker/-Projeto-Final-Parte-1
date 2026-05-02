@@ -18,9 +18,9 @@ app.MapGet("/api/servicos", ([FromServices] AppDataContext ctx) =>
     return Results.Ok(ctx.Servicos.ToList());
 });
 
-app.MapGet("/api/servicos/{id}", (string id) =>
+app.MapGet("/api/servicos/{id}", (string id, [FromServices] AppDataContext ctx) =>
 {
-    var servico = servicos.FirstOrDefault(s => s.Id == id);
+    var servico = ctx.Servicos.FirstOrDefault(s => s.Id == id);
 
     if (servico == null)
     {
@@ -38,9 +38,9 @@ app.MapPost("/api/servicos", ([FromBody] Servico servico, [FromServices] AppData
     return Results.Created("", servico);
 });
 
-app.MapPut("/api/servicos/{id}", (string id, Servico servicoAtualizado) =>
+app.MapPut("/api/servicos/{id}", (string id, Servico servicoAtualizado, [FromServices] AppDataContext ctx) =>
 {
-    var servico = servicos.FirstOrDefault(s => s.Id == id);
+    var servico = ctx.Servicos.FirstOrDefault(s => s.Id == id);
 
     if (servico == null)
     {
@@ -50,19 +50,22 @@ app.MapPut("/api/servicos/{id}", (string id, Servico servicoAtualizado) =>
     servico.Nome = servicoAtualizado.Nome;
     servico.Preco = servicoAtualizado.Preco;
     servico.Duracao = servicoAtualizado.Duracao;
+    ctx.SaveChanges();
 
     return Results.Ok(servico);
 });
 
-app.MapDelete("/api/servicos/{id}", (string id) =>
+app.MapDelete("/api/servicos/{id}", (string id, [FromServices] AppDataContext ctx) =>
 {
-    var servico = servicos.FirstOrDefault(s => s.Id == id);
+    var servico = ctx.Servicos.FirstOrDefault(s => s.Id == id);
 
     if (servico == null)
     {
         return Results.NotFound("Serviço não encontrado!");
     }
-    servicos.Remove(servico);
+
+    ctx.Servicos.Remove(servico);
+    ctx.SaveChanges();
 
     return Results.NoContent();
 });
