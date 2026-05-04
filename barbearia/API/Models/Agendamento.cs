@@ -7,4 +7,5 @@ public class Agendamento
     public string? IdCliente { get; set; }
     public DateTime DataCadastro { get; set; } = DateTime.Now;
     public string? Situacao { get; set; }
+    public string? Observacao { get; set; }
 }

@@ -131,14 +131,14 @@ app.MapDelete("/api/clientes/{id}", (string id) =>
 });
 
 // Agendamento
-app.MapGet("/api/agendamentos", () =>
+app.MapGet("/api/agendamentos", ([FromServices] AppDataContext ctx) =>
 {
-    return Results.Ok(agendamentos);
+    return Results.Ok(ctx.Agendamentos.ToList());
 });
 
-app.MapGet("/api/agendamentos/{id}", (string id) =>
+app.MapGet("/api/agendamentos/{id}", (string id, [FromServices] AppDataContext ctx) =>
 {
-    var agendamento = agendamentos.FirstOrDefault(s => s.Id == id);
+    var agendamento = ctx.Agendamentos.FirstOrDefault(a => a.Id == id);
 
     if (agendamento == null)
     {
@@ -148,16 +148,28 @@ app.MapGet("/api/agendamentos/{id}", (string id) =>
     return Results.Ok(agendamento);
 });
 
-app.MapPost("/api/agendamentos", (Agendamento agendamento) =>
+app.MapPost("/api/agendamentos", ([FromBody] Agendamento agendamento, [FromServices] AppDataContext ctx) =>
 {
-    agendamentos.Add(agendamento);
-
+    if (ctx.Clientes.FirstOrDefault(a => a.Id == agendamento.IdCliente) == null)
+    {
+        return Results.NotFound("Cliente não encontrado!");
+    }
+    else if (ctx.Servicos.FirstOrDefault(a => a.Id == agendamento.IdServico) == null)
+    {
+        return Results.NotFound("Serviço não encontrado!");
+    }
+    else
+    {
+        ctx.Agendamentos.Add(agendamento);
+        ctx.SaveChanges();
+    }
+    
     return Results.Created("", agendamento);
 });
 
-app.MapPut("/api/agendamentos/{id}", (string id, Agendamento agendamentoAtualizado) =>
+app.MapPut("/api/agendamentos/{id}", (string id, Agendamento agendamentoAtualizado, [FromServices] AppDataContext ctx) =>
 {
-    var agendamento = agendamentos.FirstOrDefault(s => s.Id == id);
+    var agendamento = ctx.Agendamentos.FirstOrDefault(s => s.Id == id);
 
     if (agendamento == null)
     {
@@ -165,7 +177,9 @@ app.MapPut("/api/agendamentos/{id}", (string id, Agendamento agendamentoAtualiza
     }
 
     agendamento.Situacao = agendamentoAtualizado.Situacao;
-    agendamento.DataCadastro = agendamentoAtualizado.DataCadastro;
+    agendamento.Observacao = agendamentoAtualizado.Situacao;
+
+    ctx.SaveChanges();
 
     return Results.Ok(agendamento);
 });
