@@ -6,6 +6,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<AppDataContext>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactPolicy",
+        policy =>
+        {
+            policy
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 var servicos = new List<Servico>();
@@ -184,4 +196,5 @@ app.MapPut("/api/agendamentos/{id}", (string id, Agendamento agendamentoAtualiza
     return Results.Ok(agendamento);
 });
 
+app.UseCors("ReactPolicy");
 app.Run();
