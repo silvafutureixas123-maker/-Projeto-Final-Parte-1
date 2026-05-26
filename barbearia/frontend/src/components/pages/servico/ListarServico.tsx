@@ -14,7 +14,7 @@ function ListarServicos() {
     
     return (
         <div className="ListarServicos">
-            <h1>Componente ListarServico</h1>
+            <h1>Listar Produtos</h1>
             <table>
                 <thead>
                     <tr>
