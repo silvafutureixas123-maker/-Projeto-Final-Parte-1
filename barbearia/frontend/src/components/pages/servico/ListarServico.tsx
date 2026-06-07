@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
+import api from "../../../services/api";
+import Servico from "../../../models/Servico";
 
 function ListarServicos() {
-    const [servicos, setServicos] = useState([]);
+    const [servicos, setServicos] = useState<Servico[]>([]);
 
     useEffect(() => {
-        fetch("http://localhost:5049/api/servicos")
-            .then(resposta => {
-                return resposta.json();
-            }).then(dados => {
-                setServicos(dados);
-            });
+        carregarServicoAPI();
     }, [])
+
+    async function carregarServicoAPI(){
+        try {
+            const resposta = await api.get<Servico[]>("/api/servicos");
+            setServicos(resposta.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     
     return (
         <div className="ListarServicos">
@@ -24,7 +30,7 @@ function ListarServicos() {
                 </thead>
                 <tbody>
                     {servicos.map((servico : any) => (
-                        <tr>
+                        <tr key={servico.id}>
                             <td>{servico.nome}</td>
                             <td>{servico.preco}</td>
                         </tr>
