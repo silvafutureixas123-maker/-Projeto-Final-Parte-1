@@ -6,6 +6,9 @@ import CadastrarServico from './components/pages/servico/CadastrarServico';
 import ListaCliente from './components/pages/cliente/ListaCliente';
 import CadastrarCliente from './components/pages/cliente/CadastrarCliente';
 
+import ListarAgendamento from './components/pages/agendamento/ListarAgendamento';
+import CadastrarAgendamento from './components/pages/agendamento/CadastrarAgendamento';
+
 function App() {
   return (
     <div className="App">
@@ -20,6 +23,12 @@ function App() {
 
       <ListaCliente />
       <CadastrarCliente />
+
+      <hr />
+
+<ListarAgendamento />
+<CadastrarAgendamento />
+
     </div>
   );
 }
