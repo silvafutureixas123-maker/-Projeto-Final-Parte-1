@@ -24,6 +24,7 @@ function ListarServicos() {
             <table>
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Nome</th>
                         <th>Preço</th>
                     </tr>
@@ -31,6 +32,7 @@ function ListarServicos() {
                 <tbody>
                     {servicos.map((servico : any) => (
                         <tr key={servico.id}>
+                            <td>{servico.id}</td>
                             <td>{servico.nome}</td>
                             <td>{servico.preco}</td>
                         </tr>

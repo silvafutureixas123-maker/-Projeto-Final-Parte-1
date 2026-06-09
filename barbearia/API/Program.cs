@@ -83,14 +83,14 @@ app.MapDelete("/api/servicos/{id}", (string id, [FromServices] AppDataContext ct
 });
 
 // Cliente
-app.MapGet("/api/clientes", () =>
+app.MapGet("/api/clientes", ([FromServices] AppDataContext ctx) =>
 {
-    return Results.Ok(clientes);
+    return Results.Ok(ctx.Clientes.ToList());
 });
 
-app.MapGet("/api/clientes/{id}", (string id) =>
+app.MapGet("/api/clientes/{id}", (string id, [FromServices] AppDataContext ctx) =>
 {
-    var cliente = clientes.FirstOrDefault(c => c.Id == id);
+    var cliente = ctx.Clientes.FirstOrDefault(c => c.Id == id);
 
     if (cliente == null)
     {
@@ -100,21 +100,22 @@ app.MapGet("/api/clientes/{id}", (string id) =>
     return Results.Ok(cliente);
 });
 
-app.MapPost("/api/clientes", (Cliente cliente) =>
+app.MapPost("/api/clientes", (Cliente cliente, [FromServices] AppDataContext ctx) =>
 {
-    if (clientes.Any(c => c.Email == cliente.Email))
+    if (ctx.Clientes.Any(c => c.Email == cliente.Email))
     {
         return Results.Conflict("Cliente já cadastrado!");
     }
 
-    clientes.Add(cliente);
+    ctx.Clientes.Add(cliente);
+    ctx.SaveChanges();
 
     return Results.Created($"/api/clientes/{cliente.Id}", cliente);
 });
 
-app.MapPut("/api/clientes/{id}", (string id, Cliente clienteAtualizado) =>
+app.MapPut("/api/clientes/{id}", (string id, Cliente clienteAtualizado, [FromServices] AppDataContext ctx) =>
 {
-    var cliente = clientes.FirstOrDefault(c => c.Id == id);
+    var cliente = ctx.Clientes.FirstOrDefault(c => c.Id == id);
 
     if (cliente == null)
     {
@@ -124,20 +125,22 @@ app.MapPut("/api/clientes/{id}", (string id, Cliente clienteAtualizado) =>
     cliente.Nome = clienteAtualizado.Nome;
     cliente.Email = clienteAtualizado.Email;
     cliente.Telefone = clienteAtualizado.Telefone;
+    ctx.SaveChanges();
 
     return Results.Ok(cliente);
 });
 
-app.MapDelete("/api/clientes/{id}", (string id) =>
+app.MapDelete("/api/clientes/{id}", (string id, [FromServices] AppDataContext ctx) =>
 {
-    var cliente = clientes.FirstOrDefault(c => c.Id == id);
+    var cliente = ctx.Clientes.FirstOrDefault(c => c.Id == id);
 
     if (cliente == null)
     {
         return Results.NotFound("Cliente não encontrado!");
     }
 
-    clientes.Remove(cliente);
+    ctx.Clientes.Remove(cliente);
+    ctx.SaveChanges();
 
     return Results.NoContent();
 });

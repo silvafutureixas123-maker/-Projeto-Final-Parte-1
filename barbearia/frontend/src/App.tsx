@@ -19,11 +19,21 @@ function App() {
             <li>
               <Link to="/pages/servico/cadastrar">Cadastrar Serviço</Link>
             </li>
+            <li>
+              <Link to="/pages/agendamento/cadastrar">Cadastrar Agendamento</Link>
+            </li>
           </ul>
         </nav>
         <Routes>
-          <Route path="/" element={<ListarServicos/>} />
+          <Route path="/" element={
+              <>
+                <ListarServicos/>
+                <ListarAgendamento/>
+              </>
+            } />
           <Route path="/pages/servico/cadastrar" element={<CadastrarServico/>} />
+          <Route path="/pages/cliente/cadastrar" element={<CadastrarCliente/>} />
+          <Route path="/pages/agendamento/cadastrar" element={<CadastrarAgendamento/>} />
         </Routes>
       </div>
     </BrowserRouter>
