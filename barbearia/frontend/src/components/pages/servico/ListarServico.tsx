@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../../services/api";
 import Servico from "../../../models/Servico";
+import { Link } from "react-router-dom";
 
 function ListarServicos() {
     const [servicos, setServicos] = useState<Servico[]>([]);
@@ -17,6 +18,15 @@ function ListarServicos() {
             console.log(error);
         }
     }
+
+    async function deletarServico(id : string){
+        try {
+            const resposta = await api.delete(`/api/servicos/${id}`);
+            carregarServicoAPI();
+        } catch(error) {
+            console.log(error);
+        }
+    }
     
     return (
         <div className="ListarServicos">
@@ -27,6 +37,8 @@ function ListarServicos() {
                         <th>#</th>
                         <th>Nome</th>
                         <th>Preço</th>
+                        <th>Deletar</th>
+                        <th>Alterar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,6 +47,16 @@ function ListarServicos() {
                             <td>{servico.id}</td>
                             <td>{servico.nome}</td>
                             <td>{servico.preco}</td>
+                             <td>
+                                <button onClick={() => deletarServico(servico.id)}>
+                                    Deletar
+                                </button>
+                            </td>
+                            <td>
+                                <Link to={`/pages/servico/alterar/${servico.id}`}>
+                                    Alterar
+                                </Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
