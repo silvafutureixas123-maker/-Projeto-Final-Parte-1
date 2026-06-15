@@ -1,3 +1,5 @@
+import AlterarCliente from './components/pages/cliente/AlterarCliente';
+
 import React from 'react';
 import ListarServicos from './components/pages/servico/ListarServico';
 import CadastrarServico from './components/pages/servico/CadastrarServico';
@@ -29,12 +31,14 @@ function App() {
           <Route path="/" element={
               <>
                 <ListarServicos/>
+                <ListaCliente/>
                 <ListarAgendamento/>
               </>
             } />
           <Route path="/pages/servico/cadastrar" element={<CadastrarServico/>} />
           <Route path="/pages/servico/alterar/:id" element={<AlterarServico/>} />
           <Route path="/pages/cliente/cadastrar" element={<CadastrarCliente/>} />
+          <Route path="/pages/cliente/alterar/:id" element={<AlterarCliente/>} />
           <Route path="/pages/agendamento/cadastrar" element={<CadastrarAgendamento/>} />
         </Routes>
       </div>

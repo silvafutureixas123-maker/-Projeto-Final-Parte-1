@@ -1,16 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-function CadastrarCliente() {
+function AlterarCliente() {
 
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [telefone, setTelefone] = useState("");
 
+    const { id } = useParams();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        buscarCliente();
+    }, []);
+
+    function buscarCliente() {
+        fetch(`http://localhost:5049/api/clientes/${id}`)
+            .then(resposta => resposta.json())
+            .then(cliente => {
+                setNome(cliente.nome);
+                setEmail(cliente.email);
+                setTelefone(cliente.telefone);
+            });
+    }
+
     function enviar(e: any) {
         e.preventDefault();
 
-        fetch("http://localhost:5049/api/clientes", {
-            method: "POST",
+        fetch(`http://localhost:5049/api/clientes/${id}`, {
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
@@ -21,17 +39,13 @@ function CadastrarCliente() {
             })
         })
         .then(() => {
-            alert("Cliente cadastrado com sucesso!");
-
-            setNome("");
-            setEmail("");
-            setTelefone("");
+            navigate("/");
         });
     }
 
     return (
         <div>
-            <h1>Cadastrar Cliente</h1>
+            <h1>Alterar Cliente</h1>
 
             <form onSubmit={enviar}>
 
@@ -63,7 +77,7 @@ function CadastrarCliente() {
                 </div>
 
                 <button type="submit">
-                    Cadastrar
+                    Salvar
                 </button>
 
             </form>
@@ -71,4 +85,4 @@ function CadastrarCliente() {
     );
 }
 
-export default CadastrarCliente;
+export default AlterarCliente;
