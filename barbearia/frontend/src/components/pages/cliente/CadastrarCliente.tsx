@@ -1,4 +1,5 @@
 import { useState } from "react";
+import api from "../../../services/api";
 
 function CadastrarCliente() {
 
@@ -6,27 +7,28 @@ function CadastrarCliente() {
     const [email, setEmail] = useState("");
     const [telefone, setTelefone] = useState("");
 
-    function enviar(e: any) {
+    async function enviar(e: any) {
         e.preventDefault();
 
-        fetch("http://localhost:5049/api/clientes", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
+        try {
+
+            const cliente = {
                 nome,
                 email,
                 telefone
-            })
-        })
-        .then(() => {
-            alert("Cliente cadastrado com sucesso!");
+            };
+
+            const resposta = await api.post("/api/clientes", cliente);
 
             setNome("");
             setEmail("");
             setTelefone("");
-        });
+
+            console.log(resposta.data);
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     return (

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-
 import { useEffect, useState } from "react";
+import api from "../../../services/api";
 
 function ListaCliente() {
 
@@ -10,20 +10,25 @@ function ListaCliente() {
         carregarClientes();
     }, []);
 
-    function carregarClientes() {
-        fetch("http://localhost:5049/api/clientes")
-            .then(resposta => resposta.json())
-            .then(dados => setClientes(dados));
+    async function carregarClientes() {
+        try {
+            const resposta = await api.get("/api/clientes");
+            setClientes(resposta.data);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
-    function deletarCliente(id: string) {
+    async function deletarCliente(id: string) {
 
-        fetch(`http://localhost:5049/api/clientes/${id}`, {
-            method: "DELETE"
-        })
-        .then(() => {
+        try {
+
+            await api.delete(`/api/clientes/${id}`);
             carregarClientes();
-        });
+
+        } catch (error) {
+            console.log(error);
+        }
 
     }
 
@@ -59,7 +64,7 @@ function ListaCliente() {
 
                             <td>
                                 <Link to={`/pages/cliente/alterar/${cliente.id}`}>
-                                        Alterar 
+                                    Alterar
                                 </Link>
                             </td>
 

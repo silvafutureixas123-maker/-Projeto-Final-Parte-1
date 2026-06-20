@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import api from "../../../services/api";
 
 function AlterarCliente() {
 
@@ -14,33 +15,42 @@ function AlterarCliente() {
         buscarCliente();
     }, []);
 
-    function buscarCliente() {
-        fetch(`http://localhost:5049/api/clientes/${id}`)
-            .then(resposta => resposta.json())
-            .then(cliente => {
-                setNome(cliente.nome);
-                setEmail(cliente.email);
-                setTelefone(cliente.telefone);
-            });
+    async function buscarCliente() {
+
+        try {
+
+            const resposta = await api.get(`/api/clientes/${id}`);
+
+            setNome(resposta.data.nome);
+            setEmail(resposta.data.email);
+            setTelefone(resposta.data.telefone);
+
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
-    function enviar(e: any) {
+    async function enviar(e: any) {
+
         e.preventDefault();
 
-        fetch(`http://localhost:5049/api/clientes/${id}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
+        try {
+
+            const cliente = {
                 nome,
                 email,
                 telefone
-            })
-        })
-        .then(() => {
+            };
+
+            await api.put(`/api/clientes/${id}`, cliente);
+
             navigate("/");
-        });
+
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
     return (
