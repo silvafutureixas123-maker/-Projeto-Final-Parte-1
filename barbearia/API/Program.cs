@@ -184,7 +184,7 @@ app.MapPost("/api/agendamentos", ([FromBody] Agendamento agendamento, [FromServi
 
 app.MapPut("/api/agendamentos/{id}", (string id, Agendamento agendamentoAtualizado, [FromServices] AppDataContext ctx) =>
 {
-    var agendamento = ctx.Agendamentos.FirstOrDefault(s => s.Id == id);
+    var agendamento = ctx.Agendamentos.FirstOrDefault(a => a.Id == id);
 
     if (agendamento == null)
     {
@@ -192,11 +192,26 @@ app.MapPut("/api/agendamentos/{id}", (string id, Agendamento agendamentoAtualiza
     }
 
     agendamento.Situacao = agendamentoAtualizado.Situacao;
-    agendamento.Observacao = agendamentoAtualizado.Situacao;
+    agendamento.Observacao = agendamentoAtualizado.Observacao;
 
     ctx.SaveChanges();
 
     return Results.Ok(agendamento);
+});
+
+app.MapDelete("/api/agendamentos/{id}", (string id, [FromServices] AppDataContext ctx) =>
+{
+    var agendamento = ctx.Agendamentos.FirstOrDefault(a => a.Id == id);
+
+    if (agendamento == null)
+    {
+        return Results.NotFound("Agendamento não encontrado!");
+    }
+
+    ctx.Agendamentos.Remove(agendamento);
+    ctx.SaveChanges();
+
+    return Results.NoContent();
 });
 
 app.UseCors("ReactPolicy");

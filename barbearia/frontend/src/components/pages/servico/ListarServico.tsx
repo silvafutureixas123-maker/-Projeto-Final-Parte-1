@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 function ListarServicos() {
     const [servicos, setServicos] = useState<Servico[]>([]);
+    const borderStyle = { border: "1px solid black", padding: "3px" };
 
     useEffect(() => {
         carregarServicoAPI();
@@ -31,28 +32,28 @@ function ListarServicos() {
     return (
         <div className="ListarServicos">
             <h1>Listar Serviços</h1>
-            <table>
+            <table style={{ borderCollapse: "collapse", width: "100%" }}>
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Nome</th>
-                        <th>Preço</th>
-                        <th>Deletar</th>
-                        <th>Alterar</th>
+                        <th style={borderStyle}>#</th>
+                        <th style={borderStyle}>Nome</th>
+                        <th style={borderStyle}>Preço</th>
+                        <th style={borderStyle}>Deletar</th>
+                        <th style={borderStyle}>Alterar</th>
                     </tr>
                 </thead>
                 <tbody>
                     {servicos.map((servico : any) => (
                         <tr key={servico.id}>
-                            <td>{servico.id}</td>
-                            <td>{servico.nome}</td>
-                            <td>{servico.preco}</td>
-                             <td>
+                            <td style={borderStyle}>{servico.id}</td>
+                            <td style={borderStyle}>{servico.nome}</td>
+                            <td style={borderStyle}>{servico.preco}</td>
+                            <td style={borderStyle}>
                                 <button onClick={() => deletarServico(servico.id)}>
                                     Deletar
                                 </button>
                             </td>
-                            <td>
+                            <td style={borderStyle}>
                                 <Link to={`/pages/servico/alterar/${servico.id}`}>
                                     Alterar
                                 </Link>
