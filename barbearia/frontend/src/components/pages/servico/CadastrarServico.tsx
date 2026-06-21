@@ -49,7 +49,7 @@ function CadastrarServico() {
                     }/>
                 </div>
                 <div  className="campo">
-                    <label>Duração:</label>
+                    <label>Duração(min):</label>
                     <input value={duracao} required type="text" onChange={
                         (e : any) => {setDuracao(e.target.value)}
                     }/>

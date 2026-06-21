@@ -66,7 +66,7 @@ function AlterarServico(){
                     }/>
                 </div>
                 <div  className="campo">
-                    <label>Duracao:</label>
+                    <label>Duracao(min):</label>
                     <input value={duracao} required type="text" onChange={
                         (e : any) => {setDuracao(e.target.value)}
                     }/>

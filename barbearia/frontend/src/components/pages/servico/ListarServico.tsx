@@ -39,6 +39,7 @@ function ListarServicos() {
                         <th>#</th>
                         <th>Nome</th>
                         <th>Preço</th>
+                        <th>Duração(min)</th>
                         <th>Deletar</th>
                         <th>Alterar</th>
                     </tr>
@@ -49,6 +50,7 @@ function ListarServicos() {
                             <td className="id">{servico.id}</td>
                             <td>{servico.nome}</td>
                             <td>{servico.preco}</td>
+                            <td>{servico.duracao}</td>
                             <td className="delAlt">
                                 <button onClick={() => deletarServico(servico.id)}>
                                     Deletar
