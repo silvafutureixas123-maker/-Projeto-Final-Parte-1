@@ -6,9 +6,6 @@ import { getMensagemErro } from "../../../utils/erros";
 
 function ListarServicos() {
     const [servicos, setServicos] = useState<Servico[]>([]);
-    const borderStyle: React.CSSProperties = { border: "1px solid black", padding: "3px" };
-    const borderStyleId: React.CSSProperties = { border: "1px solid black", padding: "3px", width: "300px"};
-    const borderStyleDelAlt: React.CSSProperties = { border: "1px solid black", padding: "3px", width: "80px"};
 
     useEffect(() => {
         carregarServicoAPI();
