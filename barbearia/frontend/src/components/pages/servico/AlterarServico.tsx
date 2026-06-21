@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Servico from "../../../models/Servico";
 import api from "../../../services/api";
 import { useNavigate, useParams } from "react-router-dom";
+import { getMensagemErro } from "../../../utils/erros";
+
 
 function AlterarServico(){
     const [nome, setNome] =  useState("");
@@ -23,6 +25,7 @@ function AlterarServico(){
             setPreco(String(resposta.data.preco));
         } catch (error) {
             console.log(error);
+            alert(getMensagemErro(error));
         }
     }
 
@@ -43,8 +46,11 @@ function AlterarServico(){
             setDuracao("");
 
             navigate("/");
+
+            alert("Serviço alterado com sucesso!");
         } catch (error) {
             console.log(error);
+            alert(getMensagemErro(error));
         }
 
     }
@@ -53,19 +59,19 @@ function AlterarServico(){
         <div className="AlterarServico">
             <h1>Alterar Serviço</h1>
             <form onSubmit={enviarServicoAPI}>
-                <div>
+                <div  className="campo">
                     <label>Nome:</label>
                     <input value={nome} required type="text" onChange={
                         (e : any) => {setNome(e.target.value)}
                     }/>
                 </div>
-                <div>
+                <div  className="campo">
                     <label>Duracao:</label>
                     <input value={duracao} required type="text" onChange={
                         (e : any) => {setDuracao(e.target.value)}
                     }/>
                 </div>
-                <div>
+                <div  className="campo">
                     <label>Preço:</label>
                     <input value={preco} required type="text" onChange={
                         (e : any) => {setPreco(e.target.value)}

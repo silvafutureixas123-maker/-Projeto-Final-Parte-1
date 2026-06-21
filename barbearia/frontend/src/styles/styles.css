@@ -1,0 +1,44 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 3px;
+}
+
+th {
+    background-color: cornflowerblue !important;
+    color: black;
+}
+
+.id {
+    width: 300px;
+}
+
+.dateTime {
+    width: 150px;
+    text-align: center !important;
+}
+
+.delAlt {
+    width: 70px;
+    text-align: center !important;
+}
+
+.campo {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.campo input {
+  width: 30%;
+}
+
+.App {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}

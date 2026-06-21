@@ -9,6 +9,7 @@ import ListarAgendamento from './components/pages/agendamento/ListarAgendamento'
 import CadastrarAgendamento from './components/pages/agendamento/CadastrarAgendamento';
 import AlterarAgendamento from './components/pages/agendamento/AlterarAgendamento';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import "./styles/styles.css";
 
 function App() {
   return (

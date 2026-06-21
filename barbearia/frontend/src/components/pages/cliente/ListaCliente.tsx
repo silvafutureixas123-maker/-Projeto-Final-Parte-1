@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import api from "../../../services/api";
+import { getMensagemErro } from "../../../utils/erros";
 
 function ListaCliente() {
 
     const [clientes, setClientes] = useState([]);
-    const borderStyle = { border: "1px solid black", padding: "3px" };
 
     useEffect(() => {
         carregarClientes();
@@ -29,6 +29,7 @@ function ListaCliente() {
 
         } catch (error) {
             console.log(error);
+            alert(getMensagemErro(error));
         }
 
     }
@@ -37,27 +38,27 @@ function ListaCliente() {
         <div>
             <h1>Listar Clientes</h1>
 
-            <table style={{ borderCollapse: "collapse", width: "100%" }}>
+            <table>
                 <thead>
                     <tr>
-                        <th style={borderStyle}>#</th>
-                        <th style={borderStyle}>Nome</th>
-                        <th style={borderStyle}>Email</th>
-                        <th style={borderStyle}>Telefone</th>
-                        <th style={borderStyle}>Deletar</th>
-                        <th style={borderStyle}>Alterar</th>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>Deletar</th>
+                        <th>Alterar</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     {clientes.map((cliente: any) => (
                         <tr key={cliente.id}>
-                            <td style={borderStyle}>{cliente.id}</td>
-                            <td style={borderStyle}>{cliente.nome}</td>
-                            <td style={borderStyle}>{cliente.email}</td>
-                            <td style={borderStyle}>{cliente.telefone}</td>
+                            <td className="id">{cliente.id}</td>
+                            <td>{cliente.nome}</td>
+                            <td>{cliente.email}</td>
+                            <td>{cliente.telefone}</td>
 
-                            <td style={borderStyle}>
+                            <td className="delAlt">
                                 <button
                                     onClick={() => deletarCliente(cliente.id)}
                                 >
@@ -65,7 +66,7 @@ function ListaCliente() {
                                 </button>
                             </td>
 
-                            <td style={borderStyle}>
+                            <td className="delAlt">
                                 <Link to={`/pages/cliente/alterar/${cliente.id}`}>
                                     Alterar
                                 </Link>

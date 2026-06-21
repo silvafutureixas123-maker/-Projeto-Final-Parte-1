@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from "../../../services/api";
+import { getMensagemErro } from "../../../utils/erros";
 
 function CadastrarCliente() {
 
@@ -25,9 +26,10 @@ function CadastrarCliente() {
             setTelefone("");
 
             console.log(resposta.data);
-
+            alert("Cliente cadastrado com sucesso.");
         } catch (error) {
             console.log(error);
+            alert(getMensagemErro(error));
         }
     }
 
@@ -36,8 +38,7 @@ function CadastrarCliente() {
             <h1>Cadastrar Cliente</h1>
 
             <form onSubmit={enviar}>
-
-                <div>
+                <div  className="campo">
                     <label>Nome:</label>
                     <input
                         value={nome}
@@ -46,7 +47,7 @@ function CadastrarCliente() {
                     />
                 </div>
 
-                <div>
+                <div  className="campo">
                     <label>Email:</label>
                     <input
                         value={email}
@@ -55,7 +56,7 @@ function CadastrarCliente() {
                     />
                 </div>
 
-                <div>
+                <div  className="campo">
                     <label>Telefone:</label>
                     <input
                         value={telefone}
@@ -67,7 +68,6 @@ function CadastrarCliente() {
                 <button type="submit">
                     Cadastrar
                 </button>
-
             </form>
         </div>
     );

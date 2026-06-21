@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../../services/api";
+import { getMensagemErro } from "../../../utils/erros";
 
 function AlterarCliente() {
 
@@ -27,6 +28,7 @@ function AlterarCliente() {
 
         } catch (error) {
             console.log(error);
+            alert(getMensagemErro(error));
         }
 
     }
@@ -46,9 +48,10 @@ function AlterarCliente() {
             await api.put(`/api/clientes/${id}`, cliente);
 
             navigate("/");
-
+            alert("Cliente alterado com sucesso.");
         } catch (error) {
             console.log(error);
+            alert(getMensagemErro(error));
         }
 
     }
@@ -58,8 +61,7 @@ function AlterarCliente() {
             <h1>Alterar Cliente</h1>
 
             <form onSubmit={enviar}>
-
-                <div>
+                <div  className="campo">
                     <label>Nome:</label>
                     <input
                         value={nome}
@@ -68,7 +70,7 @@ function AlterarCliente() {
                     />
                 </div>
 
-                <div>
+                <div  className="campo">
                     <label>Email:</label>
                     <input
                         value={email}
@@ -77,7 +79,7 @@ function AlterarCliente() {
                     />
                 </div>
 
-                <div>
+                <div  className="campo">
                     <label>Telefone:</label>
                     <input
                         value={telefone}
@@ -89,7 +91,6 @@ function AlterarCliente() {
                 <button type="submit">
                     Salvar
                 </button>
-
             </form>
         </div>
     );

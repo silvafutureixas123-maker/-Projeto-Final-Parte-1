@@ -20,10 +20,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-var servicos = new List<Servico>();
-var agendamentos = new List<Agendamento>();
-var clientes = new List<Cliente>();
-
 // Serviço
 app.MapGet("/api/servicos", ([FromServices] AppDataContext ctx) =>
 {
@@ -74,6 +70,10 @@ app.MapDelete("/api/servicos/{id}", (string id, [FromServices] AppDataContext ct
     if (servico == null)
     {
         return Results.NotFound("Serviço não encontrado!");
+    }
+    else if (ctx.Agendamentos.FirstOrDefault(a => a.IdServico == servico.Id) != null)
+    {
+        return Results.Conflict("Serviço possui agendamentos vinculados e não pode ser excluído!");
     }
 
     ctx.Servicos.Remove(servico);
@@ -137,6 +137,10 @@ app.MapDelete("/api/clientes/{id}", (string id, [FromServices] AppDataContext ct
     if (cliente == null)
     {
         return Results.NotFound("Cliente não encontrado!");
+    }
+    else if (ctx.Agendamentos.FirstOrDefault(a => a.IdCliente == cliente.Id) != null)
+    {
+        return Results.Conflict("Cliente possui agendamentos vinculados e não pode ser excluído!");
     }
 
     ctx.Clientes.Remove(cliente);

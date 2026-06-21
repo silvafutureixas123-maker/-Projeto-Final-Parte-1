@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Agendamento from "../../../models/Agendamento";
 import api from "../../../services/api";
 import { useNavigate, useParams } from "react-router-dom";
+import { getMensagemErro } from "../../../utils/erros";
 
 function AlterarAgendamento(){
     const [situacao, setSituacao] = useState("");
@@ -22,6 +23,7 @@ function AlterarAgendamento(){
             setObservacao(String(resposta.data.observacao));
         } catch (error) {
             console.log(error);
+            alert(getMensagemErro(error));
         }
     }
 
@@ -40,8 +42,11 @@ function AlterarAgendamento(){
             setObservacao("");
 
             navigate("/");
+
+            alert("Agendamento alterado com sucesso.");
         } catch (error) {
             console.log(error);
+            alert(getMensagemErro(error));
         }
 
     }
@@ -50,13 +55,13 @@ function AlterarAgendamento(){
         <div className="AlterarAgendamento">
             <h1>Alterar Agendamento</h1>
             <form onSubmit={enviarAgendamentoAPI}>
-                <div>
+                <div  className="campo">
                     <label>Situacao:</label>
                     <input value={situacao} required type="text" onChange={
                         (e : any) => {setSituacao(e.target.value)}
                     }/>
                 </div>
-                <div>
+                <div  className="campo">
                     <label>Observação:</label>
                     <input value={observacao} required type="text" onChange={
                         (e : any) => {setObservacao(e.target.value)}
